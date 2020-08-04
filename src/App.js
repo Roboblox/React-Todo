@@ -55,7 +55,42 @@ class App extends React.Component {
       }
     );
   };
+  toggleTask = (taskId) => {
+    this.setState({
+      tasks: this.state.tasks.map((task) => {
+        if (taskId === task.id) {
+          return {
+            ...task,
+            completed: !task.completed,
+          };
+        }
+        return task;
+      }),
+    });
+  };
+  clearCompleted = (e) => {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.filter((task) => !task.completed),
+    });
+  };
 
+  toggleCompleted(taskId) {
+    debugger;
+    this.setState({
+      ...this.state,
+      todoItem: this.state.todoItem.map((item) => {
+        if (item.id === taskId) {
+          return {
+            ...item,
+            completed: !item.completed,
+          };
+        } else {
+          return item;
+        }
+      }),
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -72,4 +107,5 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;
